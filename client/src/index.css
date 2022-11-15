@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.hero-bar {
+  font-family: "Playfair Display", serif;
+}
+
+.trending,
+.popular,
+.login {
+  font-family: "Merriweather", serif;
+}
+
+.terms {
+  font-family: "Poppins", sans-serif;
+}
+
+.shoes {
+  font-family: "Merriweather", serif;
+}
