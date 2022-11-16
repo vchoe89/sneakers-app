@@ -53,7 +53,7 @@ const Trending = () => {
     <div className="trending">
       <div className="flex items-center mx-[200px] mt-[50px] justify-between">
         <h1 className=" font-bold text-xl pl-1">Trending Sneakers</h1>
-        <Link className=" hover:bg-slate-200" to="/shoes">
+        <Link className=" hover:bg-slate-200" to="/searched">
           <div className="flex items-center justify-center">
             <div className="text-green-800 font-black text-sm">Shop All</div>
             <div className="items-center">
@@ -81,7 +81,7 @@ const Trending = () => {
               <p className="mt-10 text-red-600 text-sm">Lowest price</p>
               <p className="font-black text-lg mb-4">${item.retailPrice}</p>
               <p className="text-xs font-bold flex text-black items-center py-1 pl-1 bg-gray-100 max-w-fit pr-1">
-                {item.goatProductId} sold
+                {Math.floor(item.goatProductId / 20)} sold
               </p>
             </div>
           </div>

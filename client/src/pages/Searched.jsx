@@ -2,14 +2,16 @@ import Navbar from "../components/Navbar";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
 import { Button, Menu, MenuItem } from "@mui/material";
-// import { SneaksAPI } from "sneaks-api";
-// const SneaksAPI = require("sneaks-api");
-// const sneaks = new SneaksAPI();
+import axios from "axios";
+import { useEffect } from "react";
+import Product from "../components/Product";
+import ReactPaginate from "react-paginate";
 
-export const Shoes = () => {
+export const Searched = () => {
   const [sort, setSort] = useState(false);
   const [anchor, setAnchor] = useState(false);
-  // const [shoes, setShoes] = useState([]);
+  const [shoes, setShoes] = useState([]);
+  const [brand, setBrand] = useState("jordans");
 
   const handleSort = () => {
     setSort(!sort);
@@ -19,120 +21,26 @@ export const Shoes = () => {
     console.log(e);
   };
 
-  const shoes = [
-    {
-      name: "Jordan 1 Retro High OG",
-      img: "https://images.stockx.com/images/Air-Jordan-1-Retro-High-OG-Chicago-Reimagined-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1665691099&q=75",
-      price: "$371",
-      sold: "2191",
-    },
-    {
-      name: "Jordan 4 Midnight Navy",
-      img: "https://images.stockx.com/images/Air-Jordan-4-Retro-White-Midnight-Navy-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1667401281&q=75",
-      price: "$274",
-      sold: "12011",
-    },
-    {
-      name: "Jordan 3 Retro Fire Red",
-      img: "https://images.stockx.com/images/Air-Jordan-3-Retro-Fire-Red-2022-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663687791&q=75",
-      price: "$188",
-      sold: "701",
-    },
-    {
-      name: "Jordan 4 Retro Canyon",
-      img: "https://images.stockx.com/images/Air-Jordan-4-Retro-Canyon-Purple-W-Product.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1660285854&q=75",
-      price: "$168",
-      sold: "671",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-    {
-      name: "Nike Lebron 20 Violet Frost",
-      img: "https://images.stockx.com/images/Nike-Lebron-20-Violet-Frost.jpg?fit=fill&bg=FFFFFF&w=140&h=75&fm=avif&auto=compress&dpr=2&trim=color&updated_at=1663161903&q=75",
-      price: "$175",
-      sold: "9012",
-    },
-  ];
+  const brandFilter = (e) => {
+    console.log(e.target.value);
+    setBrand(e.target.value);
+  };
 
   const size = [
     1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10,
     10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15,
   ];
 
-  // const AllProducts = () =>
-  //   sneaks.getProducts("Yeezy Cinder", 10, function (err, products) {
-  //     console.log(products);
-  //   });
+  useEffect(() => {
+    try {
+      axios.get(`http://localhost:8800/${brand}`).then((res) => {
+        setShoes(res.data);
+        console.log(res.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [brand]);
 
   return (
     <div className="shoes">
@@ -149,28 +57,169 @@ export const Shoes = () => {
       </div>
       <div className="grid grid-cols-6 mx-[250px]">
         <div className="col-span-1">
-          <div className="text-lg flex flex-col gap-3 font-bold">
-            <p>SNEAKERS</p>
-            <p>SHOES</p>
-            <p>APPAREL</p>
-            <p>ELECTRONICS</p>
-            <p>TRADING CARDS</p>
-            <p>ACCESSORIES</p>
-            <p className="mt-8 text-red-600 mb-10">ON SALE</p>
+          <div className="text-md flex flex-col gap-3 font-bold">
+            <h1 className="text-xl text-red-600 font-extrabold">SNEAKERS</h1>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="adidas"
+            >
+              ADIDAS
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="nike"
+            >
+              NIKE
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="jordans"
+            >
+              AIR JORDAN
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="yeezy"
+            >
+              YEEZY
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="newbalance"
+            >
+              NEW BALANCE
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="reebok"
+            >
+              REEBOK
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="converse"
+            >
+              CONVERSE
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="puma"
+            >
+              PUMA
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="vans"
+            >
+              VANS
+            </button>
           </div>
-          <div className="text-lg flex flex-col gap-3 font-bold">
-            <p>ADIDAS</p>
-            <p>NIKE</p>
-            <p>AIR JORDAN</p>
-            <p>YEEZY</p>
-            <p>NEW BALANCE</p>
-            <p>REEBOK</p>
-            <p>CONVERSE</p>
-            <p>PUMA</p>
-            <p>VANS</p>
+          <div className="text-md flex mt-8 flex-col gap-3 font-bold">
+            <h1 className="text-xl text-red-600 font-extrabold">
+              LUXURY BRANDS
+            </h1>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="balenciaga"
+            >
+              BALENCIAGA
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="chanel"
+            >
+              CHANEL
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="gucci"
+            >
+              GUCCI
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="dior"
+            >
+              DIOR
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="hermes"
+            >
+              HERMES
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="louisvutton"
+            >
+              LOUIS VUTTON
+            </button>
           </div>
-          <div className="mt-10 text-lg flex flex-col gap-2 font-bold">
-            <h1 className="mr-4 text-xl">SIZE TYPES</h1>
+
+          <div className="text-md flex mt-8 flex-col gap-3 font-bold">
+            <h1 className="text-xl text-red-600 font-extrabold">
+              CASUAL SHOES
+            </h1>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="crocs"
+            >
+              CROCS
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="clarks"
+            >
+              CLARKS
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="birkenstocks"
+            >
+              BIRKENSTOCKS
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="ugg"
+            >
+              UGG
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="timberland"
+            >
+              TIMBERLAND
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="drmartens"
+            >
+              DR. MARTENS
+            </button>
+          </div>
+          <div className="text-lg mt-8 flex flex-col gap-2 font-bold">
+            <h1 className="mr-4 text-xl text-red-600">SIZE TYPES</h1>
 
             <div class="flex items-center">
               <input
@@ -234,17 +283,20 @@ export const Shoes = () => {
             </div>
           </div>
           <div className="mt-6">
-            <h1 className="mb-2 text-xl">SIZES</h1>
+            <h1 className="mb-2 text-red-600 text-xl">SIZES</h1>
             <div className="grid grid-cols-4 gap-2">
-              {size.map((size) => (
-                <button className="border border-black py-1 hover:bg-black hover:text-white">
+              {size.map((size, i) => (
+                <button
+                  key={i}
+                  className="border border-black py-1 hover:bg-black hover:text-white"
+                >
                   {size}
                 </button>
               ))}
             </div>
           </div>
           <div>
-            <h1 className="mt-10 text-xl">PRICES</h1>
+            <h1 className="mt-10 text-red-600 text-xl">PRICES</h1>
             <div>
               <div class="flex my-1 items-center">
                 <input
@@ -354,7 +406,7 @@ export const Shoes = () => {
                 )}
               </button>
 
-              <div id="dropdown" className="">
+              {/* <div id="dropdown" className="">
                 <ul>
                   <li>
                     <a href="#">Price</a>
@@ -362,26 +414,24 @@ export const Shoes = () => {
                   <li>Price</li>
                   <li>Price</li>
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="grid grid-cols-4 gap-y-4">
             {shoes.map((item) => (
-              <div className="outline outline-gray-200 max-w-[200px] flex flex-col justify-center items-center">
-                <img
-                  className="w-[200px] object-contain mt-2 px-1 h-[90px]"
-                  src={item.img}
-                  alt=""
-                />
-                <div className="mt-8 mb-4 mx-2">
-                  <p className="text-sm font-bold">{item.name}</p>
-                  <p className="mt-10 text-red-600 text-sm">Lowest price</p>
-                  <p className="font-black text-lg">${item.price}</p>
-                </div>
-              </div>
+              <Product key={item.urlKey} item={item} />
             ))}
           </div>
         </div>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="next >"
+          // onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          // pageCount={pageCount}
+          previousLabel="< previous"
+          renderOnZeroPageCount={null}
+        />
       </div>
     </div>
   );

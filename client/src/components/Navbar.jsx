@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BiSearch } from "react-icons/bi";
+import { BiSearch, BiCartAlt } from "react-icons/bi";
 import { GiConverseShoe } from "react-icons/gi";
 import { UserAuth } from "../context/AuthContext";
 
