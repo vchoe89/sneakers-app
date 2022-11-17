@@ -8,13 +8,18 @@ import Product from "../components/Product";
 export const Searched = () => {
   const [sort, setSort] = useState(false);
   const [shoes, setShoes] = useState([]);
+  const [sortedShoes, setSortedShoes] = [];
   const [brand, setBrand] = useState("jordans");
-  const [price, setPrice] = useState([]);
+  const [high, setHigh] = useState("");
+  const [low, setLow] = useState("");
+  const [newest, setNewest] = useState("");
+  const [trending, setTrending] = useState("");
 
   useEffect(() => {
     try {
       axios.get(`http://localhost:8800/${brand}`).then((res) => {
         setShoes(res.data);
+        console.log("INITIAL STATE>> ", shoes);
       });
     } catch (error) {
       console.log(error);
@@ -25,16 +30,17 @@ export const Searched = () => {
     const highToLow = shoes.sort(function (a, b) {
       return b.retailPrice - a.retailPrice;
     });
-    setShoes(highToLow);
-    console.log(shoes);
+    setShoes([...highToLow]);
   };
 
-  useEffect(() => {
-    highToLow();
-  }, []);
-
+  const lowToHigh = () => {
+    const highToLow = shoes.sort(function (a, b) {
+      return a.retailPrice - b.retailPrice;
+    });
+    setShoes([...highToLow]);
+  };
   const handleClick = (e) => {
-    console.log(e);
+    console.log(e.target.value);
   };
 
   const brandFilter = (e) => {
@@ -405,46 +411,18 @@ export const Searched = () => {
         </div>
         <div className="col-span-5 ml-10 max-w-[870px]">
           <div className="relative py-10 z-50">
-            {/* <div className="absolute top-1 right-1 mr-4 text-black">
-              <button
-                onClick={handleSort}
-                className="border relative text-sm border-1 pr-8 pl-4 py-2 mb-4"
-              >
-                Sort By
-                {sort === false ? (
-                  <IoIosArrowDown className="absolute top-1 right-1 mt-2 mr-2" />
-                ) : (
-                  <IoIosArrowUp className="absolute top-1 right-1 mt-2 mr-2" />
-                )}
-              </button>
-
-              <div
-                id="dropdown"
-                className="border border-1 border-black rounded-md hidden"
-              >
-                <ul className="p-1">
-                  <li className="bg-gray-200 py-1 px-2">Price High to Low</li>
-                  <li className="bg-white py-1 px-2">Price Low to High</li>
-                  <li className="bg-gray-200 py-1 px-2">Newest</li>
-                  <li className="bg-white py-1 px-2">Trending</li>
-                </ul>
-              </div>
-            </div> */}
-
             <div className="min-w-[100px] max-h-[70px] absolute top-1 right-1 mr-[20px]">
-              <FormControl onClick={highToLow} size="small" fullWidth>
-                <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+              <FormControl size="small" fullWidth>
+                <InputLabel id="sort-label">Sort</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={price}
+                  labelId="sort-label"
+                  id="sort"
+                  value={shoes}
                   label="sort"
-                  // onChange={handleChange}
+                  onChange={handleClick}
                 >
-                  <MenuItem>Price High to low</MenuItem>
-                  <MenuItem>Price Low to High</MenuItem>
-                  <MenuItem>Newest</MenuItem>
-                  <MenuItem>Trending</MenuItem>
+                  <MenuItem onClick={highToLow}>Price High to low</MenuItem>
+                  <MenuItem onClick={lowToHigh}>Price Low to High</MenuItem>
                 </Select>
               </FormControl>
             </div>
