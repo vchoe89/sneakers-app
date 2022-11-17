@@ -1,21 +1,37 @@
 import Navbar from "../components/Navbar";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
-import { Button, Menu, MenuItem } from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import axios from "axios";
 import { useEffect } from "react";
 import Product from "../components/Product";
-import ReactPaginate from "react-paginate";
 
 export const Searched = () => {
   const [sort, setSort] = useState(false);
-  const [anchor, setAnchor] = useState(false);
   const [shoes, setShoes] = useState([]);
   const [brand, setBrand] = useState("jordans");
+  const [price, setPrice] = useState([]);
 
-  const handleSort = () => {
-    setSort(!sort);
+  useEffect(() => {
+    try {
+      axios.get(`http://localhost:8800/${brand}`).then((res) => {
+        setShoes(res.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [brand]);
+
+  const highToLow = () => {
+    const highToLow = shoes.sort(function (a, b) {
+      return b.retailPrice - a.retailPrice;
+    });
+    setShoes(highToLow);
+    console.log(shoes);
   };
+
+  useEffect(() => {
+    highToLow();
+  }, []);
 
   const handleClick = (e) => {
     console.log(e);
@@ -30,17 +46,6 @@ export const Searched = () => {
     1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10,
     10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15,
   ];
-
-  useEffect(() => {
-    try {
-      axios.get(`http://localhost:8800/${brand}`).then((res) => {
-        setShoes(res.data);
-        console.log(res.data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }, [brand]);
 
   return (
     <div className="shoes">
@@ -114,6 +119,13 @@ export const Searched = () => {
               value="puma"
             >
               PUMA
+            </button>
+            <button
+              onClick={brandFilter}
+              className="flex justify-start"
+              value="asics"
+            >
+              ASICS
             </button>
             <button
               onClick={brandFilter}
@@ -392,11 +404,11 @@ export const Searched = () => {
           </div>
         </div>
         <div className="col-span-5 ml-10 max-w-[870px]">
-          <div className="relative py-10">
-            <div className="absolute top-1 right-1 mr-4 text-black">
+          <div className="relative py-10 z-50">
+            {/* <div className="absolute top-1 right-1 mr-4 text-black">
               <button
                 onClick={handleSort}
-                className="border relative text-sm border-1 pr-8 pl-4 py-2"
+                className="border relative text-sm border-1 pr-8 pl-4 py-2 mb-4"
               >
                 Sort By
                 {sort === false ? (
@@ -406,32 +418,43 @@ export const Searched = () => {
                 )}
               </button>
 
-              {/* <div id="dropdown" className="">
-                <ul>
-                  <li>
-                    <a href="#">Price</a>
-                  </li>
-                  <li>Price</li>
-                  <li>Price</li>
+              <div
+                id="dropdown"
+                className="border border-1 border-black rounded-md hidden"
+              >
+                <ul className="p-1">
+                  <li className="bg-gray-200 py-1 px-2">Price High to Low</li>
+                  <li className="bg-white py-1 px-2">Price Low to High</li>
+                  <li className="bg-gray-200 py-1 px-2">Newest</li>
+                  <li className="bg-white py-1 px-2">Trending</li>
                 </ul>
-              </div> */}
+              </div>
+            </div> */}
+
+            <div className="min-w-[100px] max-h-[70px] absolute top-1 right-1 mr-[20px]">
+              <FormControl onClick={highToLow} size="small" fullWidth>
+                <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={price}
+                  label="sort"
+                  // onChange={handleChange}
+                >
+                  <MenuItem>Price High to low</MenuItem>
+                  <MenuItem>Price Low to High</MenuItem>
+                  <MenuItem>Newest</MenuItem>
+                  <MenuItem>Trending</MenuItem>
+                </Select>
+              </FormControl>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-y-4">
+          <div className="grid grid-cols-4 gap-y-4 z-0">
             {shoes.map((item) => (
               <Product key={item.urlKey} item={item} />
             ))}
           </div>
         </div>
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          // onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          // pageCount={pageCount}
-          previousLabel="< previous"
-          renderOnZeroPageCount={null}
-        />
       </div>
     </div>
   );

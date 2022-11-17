@@ -69,15 +69,15 @@ const Trending = () => {
         {shoes.map((item, i) => (
           <div
             key={i}
-            className="outline outline-gray-200 min-w-[210px] max-w-[230px] flex flex-col justify-center items-center"
+            className="border bg-white outline-gray-300 rounded-sm min-w-[230px] max-w-[230px] flex flex-col justify-center items-center"
           >
             <img
-              className="w-[1780px] mt-4 px-1 h-[95px] object-contain"
+              className="w-[200px] mt-4 px-1 h-[120px] object-contain"
               src={item.thumbnail}
               alt=""
             />
             <div className="mt-8 mix-w-[210px] px-2 mb-4">
-              <p className="">{item.shoeName}</p>
+              <p className="font-bold">{item.shoeName}</p>
               <p className="mt-10 text-red-600 text-sm">Lowest price</p>
               <p className="font-black text-lg mb-4">${item.retailPrice}</p>
               <p className="text-xs font-bold flex text-black items-center py-1 pl-1 bg-gray-100 max-w-fit pr-1">

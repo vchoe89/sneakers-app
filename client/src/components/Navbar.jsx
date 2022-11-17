@@ -17,17 +17,22 @@ const Navbar = () => {
     }
   };
 
+  const handleSearch = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
-    <div className="flex sticky flex-row justify-between mx-auto py-4 px-4 border-b-2">
+    <div className="flex bg-white sticky flex-row justify-between mx-auto py-4 px-4 border-b-2">
       <div className="flex sticky flex-row items-center">
         <Link to="/">
           <div className="mr-4 text-green-700">
             <GiConverseShoe size={50} />
           </div>
         </Link>
-        <div className="relative ml-4 w-[800px] rounded flex border border-gray-300 items-center md:border-1 py-2 md:shadow-sm">
+        <div className="relative ml-4 w-[800px] rounded flex border border-gray-700 items-center md:border-1 py-2 md:shadow-sm">
           <input
-            className="ml-8 pl-2 text-sm px-20 flex-grow bg-transparent outline-none"
+            onChange={handleSearch}
+            className="ml-8 pl-2 text-sm px-20 py-1 grow bg-transparent outline-none "
             type="text"
             placeholder="Search for brand, color, etc."
           />

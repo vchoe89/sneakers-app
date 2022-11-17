@@ -9,7 +9,6 @@ import Trending from "../components/Trending";
 const Home = () => {
   return (
     <>
-      <Navbar />
       <Hero />
       <Trending />
       <Popular />

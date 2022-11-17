@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useLocation } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import { AiFillHeart } from "react-icons/ai";
 
 const ProductInfo = ({ item }) => {
   const location = useLocation();
@@ -11,8 +11,7 @@ const ProductInfo = ({ item }) => {
 
   console.log(product);
   return (
-    <div className="product__info">
-      <Navbar />
+    <div className="product__info bg-white w-full h-full">
       <div className="mx-[300px] my-[50px]">
         <div className="flex">
           <div className="flex flex-col">
@@ -29,7 +28,7 @@ const ProductInfo = ({ item }) => {
               <img className="object-contain" src={product.thumbnail} alt="/" />
             </div>
             <div className="border border-1 p-2 rounded-md">
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-gray-600">
                 {product.description}
               </span>
 
@@ -75,21 +74,23 @@ const ProductInfo = ({ item }) => {
               </div>
             </div>
             <div className="flex gap-4 mt-4 border-b-[1px] pb-3">
-              <button className="py-3 flex min-w-[230px] justify-center grow px-6 border border-gray-700 rounded-md">
-                Place Bid
+              <button className="py-3 relative flex min-w-[230px] justify-center grow px-6 border border-green-700 text-green-700 rounded-md">
+                Wish List
               </button>
+              <AiFillHeart
+                size={18}
+                className="absolute right-[60%] mr-2 mt-4 text-green-700"
+              />
               <button className="py-3 grow px-6 border bg-green-700 border-green-700 text-white rounded-md">
                 {`Buy for $${product.retailPrice}`}
               </button>
             </div>
-            <div className="my-4 text-sm">
-              <span className="bg-[#F4F3F1] px-2 flex justify-center">
-                <span className="text-green-800 font-extrabold">Buy now</span>
-                <h1>Staring at $23/mo.</h1>
-                <h1 className="text-green-800 font-extrabold">
-                  Prequalify Now
-                </h1>
-              </span>
+            <div className="my-4 text-sm bg-[#F4F3F1] px-2 flex justify-center">
+              <h1 className="text-green-800 font-extrabold">
+                Buy now{" "}
+                <span className="text-gray-800">Staring at $23/mo.</span>{" "}
+                Prequalify Now
+              </h1>
             </div>
             <button className="py-3 px-2 absolute bottom-3 min-w-[465px] bg-green-700 text-white rounded-md">
               Want to Sell? Find out how.

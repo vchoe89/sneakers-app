@@ -8,10 +8,15 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: #f9f9f9;
 }
 
 .hero-bar {
   font-family: "Playfair Display", serif;
+}
+
+.banner__hero {
+  font-family: "Merriweather", serif;
 }
 
 .trending,

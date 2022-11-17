@@ -47,80 +47,90 @@ app.get("/louisvutton", (req, res) => {
 
 //SPORTS SHOES
 app.get("/jordans", (req, res) => {
-  sneaks.getProducts("jordans", 200, function (err, products) {
+  sneaks.getProducts("jordans", 60, function (err, products) {
     res.send(products);
   });
 });
 app.get("/adidas", (req, res) => {
-  sneaks.getProducts("adidas", 40, function (err, products) {
+  sneaks.getProducts("adidas", 60, function (err, products) {
     res.send(products);
   });
 });
 
 app.get("/nike", (req, res) => {
-  sneaks.getProducts("nike", 40, function (err, products) {
+  sneaks.getProducts("nike", 60, function (err, products) {
+    res.send(products);
+  });
+});
+app.get("/ultraboost", (req, res) => {
+  sneaks.getProducts("adidasultraboost", 60, function (err, products) {
     res.send(products);
   });
 });
 app.get("/yeezy", (req, res) => {
-  sneaks.getProducts("yeezy", 40, function (err, products) {
+  sneaks.getProducts("yeezy", 60, function (err, products) {
     res.send(products);
   });
 });
 app.get("/newbalance", (req, res) => {
-  sneaks.getProducts("newbalance", 40, function (err, products) {
+  sneaks.getProducts("newbalance", 60, function (err, products) {
     res.send(products);
   });
 });
 app.get("/reebok", (req, res) => {
-  sneaks.getProducts("reebok", 40, function (err, products) {
+  sneaks.getProducts("reebok", 60, function (err, products) {
     res.send(products);
   });
 });
 app.get("/converse", (req, res) => {
-  sneaks.getProducts("converse", 40, function (err, products) {
+  sneaks.getProducts("converse", 60, function (err, products) {
     res.send(products);
   });
 });
 app.get("/puma", (req, res) => {
-  sneaks.getProducts("puma", 40, function (err, products) {
+  sneaks.getProducts("puma", 60, function (err, products) {
     res.send(products);
   });
 });
 
 //CASUAL
 app.get("/vans", (req, res) => {
-  sneaks.getProducts("vans", 40, function (err, products) {
+  sneaks.getProducts("vans", 80, function (err, products) {
     res.send(products);
   });
 });
 app.get("/crocs", (req, res) => {
-  sneaks.getProducts("crocs", 40, function (err, products) {
+  sneaks.getProducts("crocs", 80, function (err, products) {
+    res.send(products);
+  });
+});
+app.get("/asics", (req, res) => {
+  sneaks.getProducts("asics", 80, function (err, products) {
     res.send(products);
   });
 });
 app.get("/clarks", (req, res) => {
-  sneaks.getProducts("clarks", 40, function (err, products) {
+  sneaks.getProducts("clarks", 80, function (err, products) {
     res.send(products);
   });
 });
 app.get("/birkenstocks", (req, res) => {
-  sneaks.getProducts("birkenstocks", 40, function (err, products) {
+  sneaks.getProducts("birkenstocks", 80, function (err, products) {
     res.send(products);
   });
 });
 app.get("/ugg", (req, res) => {
-  sneaks.getProducts("ugg", 40, function (err, products) {
+  sneaks.getProducts("ugg", 80, function (err, products) {
     res.send(products);
   });
 });
 app.get("/timberland", (req, res) => {
-  sneaks.getProducts("timberland", 40, function (err, products) {
+  sneaks.getProducts("timberland", 80, function (err, products) {
     res.send(products);
   });
 });
 app.get("/drmartens", (req, res) => {
-  sneaks.getProducts("drmartens", 40, function (err, products) {
+  sneaks.getProducts("drmartens", 80, function (err, products) {
     res.send(products);
   });
 });

@@ -56,7 +56,7 @@ const Apparel = () => {
         {apparel.map((item, i) => (
           <div
             key={i}
-            className="outline px-2 outline-gray-200 max-w-[190px] max-h-[278px] flex flex-col justify-center items-center"
+            className="border px-2 bg-white outline-gray-300 rounded-sm max-w-[190px] max-h-[278px] flex flex-col justify-center items-center"
           >
             <img
               className="w-[150px] mt-4 px-1 h-[90px] object-contain"
